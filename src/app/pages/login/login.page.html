@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Acessar</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="content">
+    <ion-infinite-scroll scrollY="true" style="flex: 1 0 0;">
+      <ion-list>
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <ion-item>
+            <ion-label position="floating">Username / E-mail</ion-label>
+            <ion-input formControlName="identifier" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input
+              type="password"
+              formControlName="password"
+              required
+            ></ion-input>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-infinite-scroll>
+
+    <div>
+      <ion-button expand="block" (click)="login()">Acessar</ion-button>
+    </div>
+  </div>
+</ion-content>

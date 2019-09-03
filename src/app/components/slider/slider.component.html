@@ -1,0 +1,16 @@
+<ion-grid>
+    <ion-row align-items-center>
+      <ion-col align-self-center>
+        <ion-slides
+          pager="false"
+          [options]="slideOptsOne"
+          class="swiper-no-swiping"
+        >
+          <ion-slide *ngFor="let image of slider.slidesItems">
+            <img src="../../../assets/images/{{ image.name }}" />
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
