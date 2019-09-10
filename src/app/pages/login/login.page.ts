@@ -26,7 +26,6 @@ export class LoginPage implements OnInit {
 
       const response = await this.auth.login(user.identifier, user.password);
       localStorage.setItem("token", JSON.stringify(response.jwt));
-      console.log(response)
     } catch (error) {}
   }
 }

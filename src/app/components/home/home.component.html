@@ -1,22 +1,15 @@
-<ion-content padding>
+<ion-content>
   <div class="content">
-    <ion-infinite-scroll scrollY="true" style="flex: 1 0 0;">
-      <ion-list>
-        <!-- <app-slider></app-slider> -->
-      </ion-list>
-    </ion-infinite-scroll>
-
-    <div>
+    <app-slider style="flex: 1 0 0;"></app-slider>
+    <div class="position-button">
       <ion-button expand="block">Conectar com o Facebook</ion-button>
-    </div>
-    <div>
       <ion-button expand="block" routerLink="/register" routerDirection="root"
         >Crie uma conta</ion-button
       >
-    </div>
-    <div>
-      <span>Já possui uma conta ?</span>
-      <a routerLink="/login" routerDirection="foward">Acessar</a>
+      <span
+        >Já possui uma conta ?
+        <a routerLink="/login" routerDirection="foward">Acessar</a></span
+      >
     </div>
   </div>
 </ion-content>
