@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "src/app/services/auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login-form",
@@ -11,7 +12,11 @@ export class LoginFormComponent implements OnInit {
   loading: boolean = false;
   form: FormGroup;
   submitted = false;
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -33,6 +38,8 @@ export class LoginFormComponent implements OnInit {
       const response = await this.auth.login(user.identifier, user.password);
       localStorage.setItem("token", response.jwt);
       localStorage.setItem("user", JSON.stringify(response.user));
+
+      this.router.navigate(["/home"]);
     } catch (error) {
       this.submitted = false;
       console.log(error);
