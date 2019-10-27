@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 90vw;
+  height: 150px;
+  margin-bottom: 5em;
+  border-radius: 15px;
+  padding: 0.5em;
+  background-color: #fff;
+  box-shadow: 0px 9px 15px -2px rgba(194, 135, 123, 0.75);
+  -webkit-box-shadow: 0px 9px 15px -2px rgba(194, 135, 123, 0.75);
+  -moz-box-shadow: 0px 9px 15px -2px rgba(194, 135, 123, 0.75);
+
+  ion-item {
+    .label-fixed.sc-ion-label-md-h {
+      flex: 0 0 50px;
+      width: 50px;
+      min-width: 50px;
+    }
+
+    --border-width: 0;
+    --highlight-color-focused: transparent;
+    --highlight-color-invalid: transparent;
+    --highlight-color-valid: transparent;
+  }
+}

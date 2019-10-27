@@ -1,24 +1,18 @@
-<div class="content">
-  <ion-infinite-scroll scrollY="true" style="flex: 1 0 0;">
-    <ion-list>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <ion-item>
-          <ion-label position="floating">Username / E-mail</ion-label>
-          <ion-input formControlName="identifier" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input
-            type="password"
-            formControlName="password"
-            required
-          ></ion-input>
-        </ion-item>
-      </form>
-    </ion-list>
-  </ion-infinite-scroll>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ion-item>
+    <ion-label position="fixed">
+      <ion-icon color="primary" name="person"></ion-icon>
+    </ion-label>
+    <ion-input formControlName="identifier" placeholder="E-mail ou usuário" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">
+      <ion-icon color="primary" name="lock"></ion-icon>
+    </ion-label>
+    <ion-input type="password" placeholder="Senha" formControlName="password" required></ion-input>
+  </ion-item>
+</form>
 
-  <div>
-    <ion-button expand="block" (click)="onSubmit()">Acessar</ion-button>
-  </div>
+<div>
+  <ion-button [disabled]="form.invalid || loading" expand="block" (click)="onSubmit()">Acessar</ion-button>
 </div>

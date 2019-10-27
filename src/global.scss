@@ -30,3 +30,13 @@
   height: 100%;
   flex-direction: column;
 }
+
+ion-button {
+  height: 50px;
+  line-height: 45px;
+  padding: 0 2rem;
+  letter-spacing: 1.25px;
+  font-family: Ubuntu;
+  font-weight: 400;
+  --border-radius: 10px;
+}

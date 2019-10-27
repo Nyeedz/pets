@@ -1,11 +1,6 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Acessar</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content padding>
-  <app-login-form></app-login-form>
+<ion-content>
+  <div class="login-header" [class.loading]="loading">
+    <div class="logo">logo</div>
+    <app-login-form (setLoading)="setLoading($event)"></app-login-form>
+  </div>
 </ion-content>
