@@ -41,7 +41,7 @@ export class LoginFormComponent implements OnInit {
       localStorage.setItem("token", response.jwt);
       localStorage.setItem("user", JSON.stringify(response.user));
 
-      this.router.navigate(["/tabs/tab1"]);
+      this.router.navigate(["/home/pets"]);
       this.messageHandler.message("Logado com sucesso", "top", 2000);
     } catch (error) {
       this.submitted = false;
