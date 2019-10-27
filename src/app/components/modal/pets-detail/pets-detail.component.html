@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="hide()">
+        <ion-icon name="close"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+    <ion-title>{{ pet.nome }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card>
+    <img [src]="url + pet.foto.url" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ pet.raca }}</ion-card-subtitle>
+      <ion-card-title>{{ pet.nome }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <strong>Peso: </strong>{{ pet.peso }} kg</ion-card-content
+    >
+  </ion-card>
+  
+  <ion-label>Intervalo de alimentação</ion-label>
+  <ion-select placeholder="Selecione o intervalo" [(ngModel)]="interval">
+    <ion-select-option [value]="3">A cada 3 horas</ion-select-option>
+    <ion-select-option [value]="6">A cada 6 horas</ion-select-option>
+    <ion-select-option [value]="9">A cada 9 horas</ion-select-option>
+    <ion-select-option [value]="12">A cada 12 horas</ion-select-option>
+    <ion-select-option [value]="24">A cada 24 horas</ion-select-option>
+  </ion-select>
+  <ion-button (click)="start()">Começar agora</ion-button>
+</ion-content>

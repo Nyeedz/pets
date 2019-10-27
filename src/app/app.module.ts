@@ -11,11 +11,13 @@ import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthInterceptor } from './intercept/intercept';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, SliderComponent],
   entryComponents: [],
   imports: [
+    AuthInterceptor,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
