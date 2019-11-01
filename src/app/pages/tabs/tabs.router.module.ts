@@ -28,6 +28,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: "monitoring",
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../monitoring/monitoring.module").then(
+                m => m.MonitoringPageModule
+              )
+          }
+        ]
+      },
+      {
         path: "settings",
         children: [
           {

@@ -15,4 +15,8 @@ export class UserService {
       .post(`${this.apiUrl}/auth/local/register`, user)
       .toPromise();
   }
+
+  getMe(): Promise<any> {
+    return this.http.get(`${this.apiUrl}/user/me`).toPromise();
+  }
 }

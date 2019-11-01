@@ -17,10 +17,12 @@
       <ion-card-title>{{ pet.nome }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <strong>Peso: </strong>{{ pet.peso }} kg</ion-card-content
-    >
+      <strong>Peso: </strong>{{ pet.peso }} kg <br />
+      <strong>Aniversário: </strong>
+      {{ pet.aniversario | date: "dd/MM/yyyy" }}
+    </ion-card-content>
   </ion-card>
-  
+
   <ion-label>Intervalo de alimentação</ion-label>
   <ion-select placeholder="Selecione o intervalo" [(ngModel)]="interval">
     <ion-select-option [value]="3">A cada 3 horas</ion-select-option>

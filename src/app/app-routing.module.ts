@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: "register",
     loadChildren: "./pages/register/register.module#RegisterPageModule"
-  }
+  },  { path: 'monitoring', loadChildren: './pages/monitoring/monitoring.module#MonitoringPageModule' }
+
 ];
 @NgModule({
   imports: [
