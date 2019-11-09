@@ -12,10 +12,12 @@
             Nome é obrigatório !
           </span>
         </ion-item>
+
         <ion-item>
           <ion-label position="floating">Sobrenome</ion-label>
           <ion-input formControlName="sobrenome" required></ion-input>
         </ion-item>
+
         <ion-item>
           <ion-label position="floating">Username</ion-label>
           <ion-input formControlName="username" required></ion-input>
@@ -26,6 +28,7 @@
             Username é obrigatório !
           </span>
         </ion-item>
+
         <ion-item>
           <ion-label position="floating">Email</ion-label>
           <ion-input formControlName="email" type="email" required></ion-input>
@@ -42,6 +45,55 @@
             Email inválido !
           </span>
         </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Endereço</ion-label>
+          <ion-input formControlName="endereco" required></ion-input>
+          <span
+            class="mt-2 danger"
+            *ngIf="submitted && form.controls.endereco.errors"
+          >
+            Endereço é obrigatório !
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Número</ion-label>
+          <ion-input
+            formControlName="numero"
+            type="number"
+            required
+          ></ion-input>
+          <span
+            class="mt-2 danger"
+            *ngIf="submitted && form.controls.number.errors"
+          >
+            Número é obrigatório !
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Cidade</ion-label>
+          <ion-input formControlName="cidade" required></ion-input>
+          <span
+            class="mt-2 danger"
+            *ngIf="submitted && form.controls.cidade.errors"
+          >
+            Cidade é obrigatório !
+          </span>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Bairro</ion-label>
+          <ion-input formControlName="cidade" required></ion-input>
+          <span
+            class="mt-2 danger"
+            *ngIf="submitted && form.controls.bairro.errors"
+          >
+            Bairro é obrigatório !
+          </span>
+        </ion-item>
+
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
           <ion-input
@@ -63,16 +115,16 @@
             formControlName="confirmPassword"
             required
           ></ion-input>
+          <span
+            class="mt-2 danger"
+            *ngIf="submitted && form.controls.confirmPassword.errors"
+          >
+            Confirmar senha é obrigatório !
+          </span>
+          <span class="mt-2 danger" *ngIf="submitted && form.errors?.invalid">
+            Senhas não coincidem !
+          </span>
         </ion-item>
-        <span
-          class="mt-2 danger"
-          *ngIf="submitted && form.controls.confirmPassword.errors"
-        >
-          Confirmar senha é obrigatório !
-        </span>
-        <span class="mt-2 danger" *ngIf="submitted && form.errors?.invalid">
-          Senhas não coincidem !
-        </span>
       </form>
     </ion-list>
   </ion-infinite-scroll>
