@@ -23,13 +23,18 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-label>Intervalo de alimentação</ion-label>
-  <ion-select placeholder="Selecione o intervalo" [(ngModel)]="interval">
-    <ion-select-option [value]="3">A cada 3 horas</ion-select-option>
-    <ion-select-option [value]="6">A cada 6 horas</ion-select-option>
-    <ion-select-option [value]="9">A cada 9 horas</ion-select-option>
-    <ion-select-option [value]="12">A cada 12 horas</ion-select-option>
-    <ion-select-option [value]="24">A cada 24 horas</ion-select-option>
-  </ion-select>
-  <ion-button (click)="start()">Começar agora</ion-button>
+  <ion-card padding>
+    <ion-label>Intervalo de alimentação</ion-label>
+    <ion-select placeholder="Selecione o intervalo" [(ngModel)]="interval">
+      <ion-select-option [value]="3">A cada 3 horas</ion-select-option>
+      <ion-select-option [value]="6">A cada 6 horas</ion-select-option>
+      <ion-select-option [value]="9">A cada 9 horas</ion-select-option>
+      <ion-select-option [value]="12">A cada 12 horas</ion-select-option>
+      <ion-select-option [value]="24">A cada 24 horas</ion-select-option>
+    </ion-select>
+  </ion-card>
+
+  <div class="button-alignment">
+    <ion-button (click)="start()">Começar agora</ion-button>
+  </div>
 </ion-content>

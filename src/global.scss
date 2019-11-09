@@ -25,6 +25,10 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import "~@swimlane/ngx-datatable/index.scss";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+
 .content {
   display: flex;
   height: 100%;
@@ -39,4 +43,52 @@ ion-button {
   font-family: Ubuntu;
   font-weight: 400;
   --border-radius: 10px;
+}
+
+.mt-2 {
+  margin-top: 1.5rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.font-95 {
+  font-size: 95%;
+}
+
+.gray-color {
+  color: "#a5a4bf";
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.badge-sucess {
+  color: #fff;
+  background-color: #41c83c;
+}
+
+.badge-danger {
+  color: #fff;
+  background-color: #ff6f61;
+}
+
+.button-alignment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
 }

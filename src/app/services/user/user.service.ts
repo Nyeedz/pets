@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment.prod";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -8,7 +9,7 @@ import { environment } from "src/environments/environment.prod";
 export class UserService {
   private apiUrl = environment.url;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   register(user: any): Promise<any> {
     return this.http
@@ -17,6 +18,11 @@ export class UserService {
   }
 
   getMe(): Promise<any> {
-    return this.http.get(`${this.apiUrl}/user/me`).toPromise();
+    return this.http.get(`${this.apiUrl}/users/me`).toPromise();
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(["/login"]);
   }
 }

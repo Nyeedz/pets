@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Chart } from "chart.js";
 import { UserService } from "src/app/services/user/user.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-monitoring",
@@ -8,49 +8,152 @@ import { UserService } from "src/app/services/user/user.service";
   styleUrls: ["./monitoring.page.scss"]
 })
 export class MonitoringPage implements OnInit {
-  @ViewChild("doughnutCanvas", { static: true }) doughnutCanvas: ElementRef;
-  private doughnutChart: Chart;
+  slideOpts = {
+    on: {
+      beforeInit() {
+        const swiper = this;
+        swiper.classNames.push(`${swiper.params.containerModifierClass}flip`);
+        swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
+        const overwriteParams = {
+          slidesPerView: 1,
+          slidesPerColumn: 1,
+          slidesPerGroup: 1,
+          watchSlidesProgress: true,
+          spaceBetween: 0,
+          virtualTranslate: true
+        };
+        swiper.params = Object.assign(swiper.params, overwriteParams);
+        swiper.originalParams = Object.assign(
+          swiper.originalParams,
+          overwriteParams
+        );
+      },
+      setTranslate() {
+        const swiper = this;
+        const { $, slides, rtlTranslate: rtl } = swiper;
+        for (let i = 0; i < slides.length; i += 1) {
+          const $slideEl = slides.eq(i);
+          let progress = $slideEl[0].progress;
+          if (swiper.params.flipEffect.limitRotation) {
+            progress = Math.max(Math.min($slideEl[0].progress, 1), -1);
+          }
+          const offset$$1 = $slideEl[0].swiperSlideOffset;
+          const rotate = -180 * progress;
+          let rotateY = rotate;
+          let rotateX = 0;
+          let tx = -offset$$1;
+          let ty = 0;
+          if (!swiper.isHorizontal()) {
+            ty = tx;
+            tx = 0;
+            rotateX = -rotateY;
+            rotateY = 0;
+          } else if (rtl) {
+            rotateY = -rotateY;
+          }
+
+          $slideEl[0].style.zIndex =
+            -Math.abs(Math.round(progress)) + slides.length;
+
+          if (swiper.params.flipEffect.slideShadows) {
+            // Set shadows
+            let shadowBefore = swiper.isHorizontal()
+              ? $slideEl.find(".swiper-slide-shadow-left")
+              : $slideEl.find(".swiper-slide-shadow-top");
+            let shadowAfter = swiper.isHorizontal()
+              ? $slideEl.find(".swiper-slide-shadow-right")
+              : $slideEl.find(".swiper-slide-shadow-bottom");
+            if (shadowBefore.length === 0) {
+              shadowBefore = swiper.$(
+                `<div class="swiper-slide-shadow-${
+                  swiper.isHorizontal() ? "left" : "top"
+                }"></div>`
+              );
+              $slideEl.append(shadowBefore);
+            }
+            if (shadowAfter.length === 0) {
+              shadowAfter = swiper.$(
+                `<div class="swiper-slide-shadow-${
+                  swiper.isHorizontal() ? "right" : "bottom"
+                }"></div>`
+              );
+              $slideEl.append(shadowAfter);
+            }
+            if (shadowBefore.length)
+              shadowBefore[0].style.opacity = Math.max(-progress, 0);
+            if (shadowAfter.length)
+              shadowAfter[0].style.opacity = Math.max(progress, 0);
+          }
+          $slideEl.transform(
+            `translate3d(${tx}px, ${ty}px, 0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+          );
+        }
+      },
+      setTransition(duration) {
+        const swiper = this;
+        const { slides, activeIndex, $wrapperEl } = swiper;
+        slides
+          .transition(duration)
+          .find(
+            ".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left"
+          )
+          .transition(duration);
+        if (swiper.params.virtualTranslate && duration !== 0) {
+          let eventTriggered = false;
+          // eslint-disable-next-line
+          slides.eq(activeIndex).transitionEnd(function onTransitionEnd() {
+            if (eventTriggered) return;
+            if (!swiper || swiper.destroyed) return;
+
+            eventTriggered = true;
+            swiper.animating = false;
+            const triggerEvents = ["webkitTransitionEnd", "transitionend"];
+            for (let i = 0; i < triggerEvents.length; i += 1) {
+              $wrapperEl.trigger(triggerEvents[i]);
+            }
+          });
+        }
+      }
+    }
+  };
+
+  columns: any[];
+
+  pets: any[] = [];
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: "doughnut",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
-            ],
-            hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
-            ]
-          }
-        ]
+    this.columns = [
+      {
+        prop: "nome",
+        name: "Nome"
+      },
+      {
+        prop: "raca",
+        name: "Raça"
+      },
+      {
+        prop: "aniversarioFormated",
+        name: "Aniversário"
+      },
+      {
+        prop: "peso",
+        name: "Peso"
       }
-    });
-
+    ];
     this.getDataFromPets();
   }
 
   async getDataFromPets() {
     try {
       const response = await this.userService.getMe();
+      this.pets = response.pets;
 
-      console.log(response);
+      this.pets.map(pet => {
+        pet.aniversarioFormated = moment(pet.aniversario).format("DD/MM/YYYY");
+        delete pet.aniversario;
+      });
     } catch (error) {}
   }
 }

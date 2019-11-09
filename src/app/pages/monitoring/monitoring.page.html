@@ -4,15 +4,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    <ion-card>
-      <ion-card-header>
-        Doughnut Chart
-      </ion-card-header>
-      <ion-card-content>
-        <canvas #doughnutCanvas></canvas>
-      </ion-card-content>
-    </ion-card>
-  </div>
+<ion-content padding>
+  <ngx-datatable
+    class="material"
+    [rows]="pets"
+    [columns]="columns"
+    [rowHeight]="'auto'"
+    [headerHeight]="50"
+    [columnMode]="'force'"
+  >
+  </ngx-datatable>
 </ion-content>
