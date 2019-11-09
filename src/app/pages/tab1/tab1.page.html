@@ -21,7 +21,7 @@
               'badge-sucess': user.activated,
               'badge-danger': !user.activated
             }"
-            >{{ user.activated ? "ativo" : "desativado" }}</span
+            >{{ user.activated ? 'ativo' : 'desativado' }}</span
           ></ion-label
         >
       </ion-item>
@@ -39,13 +39,13 @@
       <ion-item>
         <ion-icon name="settings" slot="start"></ion-icon>
         <ion-label
-          ><strong>Ip do servidor:</strong> {{ ip ? ip : "Não configurado" }}
+          ><strong>Ip do servidor:</strong> {{ ip ? ip : 'Não configurado' }}
         </ion-label>
       </ion-item>
     </ion-card>
   </div>
   <div class="button-alignment">
-    <ion-button expand="full" (click)="logout()"
+    <ion-button class="custom" expand="full" (click)="logout()"
       ><ion-icon name="exit" slot="start"></ion-icon>Logout</ion-button
     >
   </div>
