@@ -1,0 +1,61 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  li {
+    // background: gray;
+
+    .thumb-image {
+      height: 150px;
+      position: relative;
+
+      img {
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      span {
+        position: absolute;
+        font-size: 2em;
+        color: white;
+        font-weight: bold;
+        top: 50%;
+        left: 10px;
+      }
+    }
+
+    &.expanded {
+      margin-bottom: 2em;
+      
+      .pet-detail {
+        max-height: 300px;
+      }
+    }
+
+    .pet-detail {
+      overflow: hidden;
+      transition: max-height 0.2s;
+      max-height: 0;
+
+      .birthday {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      ion-button {
+        height: 50px;
+        line-height: 45px;
+        letter-spacing: 1.25px;
+        font-family: Ubuntu;
+        font-weight: 400;
+        margin: 0;
+      }
+    }
+  }
+}

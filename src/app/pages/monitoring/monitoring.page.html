@@ -4,14 +4,36 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ngx-datatable
-    class="material"
-    [rows]="pets"
-    [columns]="columns"
-    [rowHeight]="'auto'"
-    [headerHeight]="50"
-    [columnMode]="'force'"
-  >
-  </ngx-datatable>
+<ion-content>
+  <ul>
+    <li
+      *ngFor="let pet of pets; let i = index"
+      [class.expanded]="expandedPet === i"
+    >
+      <div class="thumb-image ion-activatable" (click)="expandedPet = i">
+        <img [src]="pet.foto" alt="" />
+        <span>{{ pet.nome }}</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+      <div class="pet-detail">
+        <ion-button (click)="showAvaliacoes(pet)" color="primary" expand="full"
+          >Avaliação de rações</ion-button
+        >
+        <ion-list>
+          <ion-item>
+            <ion-label>{{ pet.nome }}</ion-label>
+            <ion-note slot="end" color="primary">Nome</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ pet.aniversario }}</ion-label>
+            <ion-note slot="end" color="primary">Nascimento</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ pet.peso }}kg</ion-label>
+            <ion-note slot="end" color="primary">Peso</ion-note>
+          </ion-item>
+        </ion-list>
+      </div>
+    </li>
+  </ul>
 </ion-content>
