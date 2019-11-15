@@ -1,9 +1,9 @@
-<ion-content>
+<ion-content class="white">
   <div class="position-fundo">
     <img [src]="user.avatar" [alt]="user.username" class="avatar" />
   </div>
   <div padding>
-    <ion-card class="mt-2 no-shadow">
+    <ion-card class="mt-2">
       <ion-card-header>
         <ion-card-subtitle>{{ user.username }}</ion-card-subtitle>
         <ion-card-title>{{ user.nome }}</ion-card-title>
@@ -21,7 +21,7 @@
               'badge-sucess': user.activated,
               'badge-danger': !user.activated
             }"
-            >{{ user.activated ? 'ativo' : 'desativado' }}</span
+            >{{ user.activated ? "ativo" : "desativado" }}</span
           ></ion-label
         >
       </ion-item>
@@ -39,7 +39,7 @@
       <ion-item>
         <ion-icon name="settings" slot="start"></ion-icon>
         <ion-label
-          ><strong>Ip do servidor:</strong> {{ ip ? ip : 'Não configurado' }}
+          ><strong>Ip do servidor:</strong> {{ ip ? ip : "Não configurado" }}
         </ion-label>
       </ion-item>
     </ion-card>
