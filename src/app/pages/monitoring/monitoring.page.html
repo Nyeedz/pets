@@ -17,9 +17,15 @@
       </div>
       <div class="pet-detail">
         <ion-button (click)="showAvaliacoes(pet)" color="primary" expand="full"
-          >Avaliação de rações</ion-button
+          >Informações</ion-button
         >
         <ion-list>
+          <ion-item>
+            <ion-label>Ração Favorita: Pedigree</ion-label>
+            <ion-note slot="end" color="primary"
+              ><ion-icon name="heart" style="font-size: 25px"></ion-icon
+            ></ion-note>
+          </ion-item>
           <ion-item>
             <ion-label>{{ pet.nome }}</ion-label>
             <ion-note slot="end" color="primary">Nome</ion-note>
@@ -31,6 +37,10 @@
           <ion-item>
             <ion-label>{{ pet.peso }}kg</ion-label>
             <ion-note slot="end" color="primary">Peso</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>35 dias</ion-label>
+            <ion-note slot="end" color="primary">Período</ion-note>
           </ion-item>
         </ion-list>
       </div>
