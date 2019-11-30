@@ -1,14 +1,28 @@
 <ion-content class="white">
   <div class="content">
-    <app-slider style="flex: 1 0 0;"></app-slider>
-    <div class="position-button">
-      <ion-button expand="block">Conectar com o Facebook</ion-button>
-      <ion-button expand="block" routerLink="/register" routerDirection="foward"
+    <div class="logo">
+      <img src="assets/images/full-logo.png" alt="" />
+    </div>
+    <div class="background">
+      <img src="assets/images/background.gif" alt="" />
+      <div class="overlay"></div>
+    </div>
+    <div class="home-buttons">
+      <ion-button
+        expand="block"
+        color="primary"
+        fill="outline"
+        routerLink="/register"
+        routerDirection="foward"
         >Crie uma conta</ion-button
       >
-      <span
-        >Já possui uma conta ?
-        <a routerLink="/login" routerDirection="foward">Acessar</a></span
+      <ion-button
+        expand="block"
+        color="light"
+        fill="outline"
+        routerLink="/login"
+        routerDirection="foward"
+        >Fazer login</ion-button
       >
     </div>
   </div>

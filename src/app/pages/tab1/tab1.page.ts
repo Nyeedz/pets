@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/services/user/user.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-tab1",
@@ -9,7 +10,7 @@ import { UserService } from "src/app/services/user/user.service";
 })
 export class Tab1Page implements OnInit {
   url: string = `${environment.url}`;
-  user: any;
+  user$: Observable<any>;
   ip: any;
   constructor(private userService: UserService) {}
 
@@ -19,10 +20,11 @@ export class Tab1Page implements OnInit {
 
   getCurrentUser() {
     this.ip = localStorage.getItem("ip");
-    this.user = JSON.parse(localStorage.getItem("user"));
-    if (this.user) {
-      this.user.avatar = this.user.foto.url = `${this.url}${this.user.foto.url}`;
-    }
+    this.user$ = this.userService.user;
+
+    // if (this.user) {
+    //   this.user.avatar = this.user.foto.url = `${this.url}${this.user.foto.url}`;
+    // }
   }
 
   logout() {

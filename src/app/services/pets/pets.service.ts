@@ -13,8 +13,13 @@ export class PetsService {
     return this.http.get(`${this.apiUrl}/pets`).toPromise();
   }
 
-  setFoodInterval(interval: number): Promise<any> {
-    const ip = localStorage.getItem("ip");
-    return this.http.get(`http://${ip}/timer?interval=${interval}`).toPromise();
+  findByUser(): Promise<any> {
+    const user = JSON.parse(localStorage.getItem('user'))._id;
+
+    return this.http.get(`${this.apiUrl}/pets?user=${user}`).toPromise();
+  }
+
+  setFoodInterval(interval: number | 'teste'): Promise<any> {
+    return this.http.get(`${environment.serverIp}/timer?interval=${interval}`).toPromise();
   }
 }

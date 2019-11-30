@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/services/shared/error-handler.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login-form',
@@ -17,6 +18,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
+    private userService: UserService,
     private router: Router,
     private messageHandler: ErrorHandlerService
   ) {}
@@ -39,7 +41,7 @@ export class LoginFormComponent implements OnInit {
       const user = this.form.getRawValue();
       const response = await this.auth.login(user.identifier, user.password);
       localStorage.setItem('token', response.jwt);
-      localStorage.setItem('user', JSON.stringify(response.user));
+      this.userService.setUser(response.user)
 
       this.router.navigate(["/home/pets"]);
       this.messageHandler.message("Logado com sucesso", "top", 2000);

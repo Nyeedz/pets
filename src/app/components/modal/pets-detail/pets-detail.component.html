@@ -11,7 +11,7 @@
 
 <ion-content fullscreen>
   <ion-card>
-    <img [src]="url + pet.foto.url" />
+    <img class="pet-foto" [src]="url + pet.foto.url" />
     <ion-card-header>
       <ion-card-subtitle>{{ pet.raca }}</ion-card-subtitle>
       <ion-card-title>{{ pet.nome }}</ion-card-title>
@@ -23,18 +23,28 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card padding>
-    <ion-label>Intervalo de alimentação</ion-label>
-    <ion-select placeholder="Selecione o intervalo" [(ngModel)]="interval">
-      <ion-select-option [value]="3">A cada 3 horas</ion-select-option>
-      <ion-select-option [value]="6">A cada 6 horas</ion-select-option>
-      <ion-select-option [value]="9">A cada 9 horas</ion-select-option>
-      <ion-select-option [value]="12">A cada 12 horas</ion-select-option>
-      <ion-select-option [value]="24">A cada 24 horas</ion-select-option>
-    </ion-select>
+  <ion-card padding [class.no-shadow]="!racao && !intervalo">
+    <ion-grid style="margin-bottom: 1em;" *ngIf="racao && intervalo">
+      <ion-row>
+        <ion-col size="6">
+          <div class="feed-brand">
+            <ion-icon name="pizza"></ion-icon>
+            <span>{{ racao.name }}</span>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div class="feed-interval">
+            <ion-icon name="alarm"></ion-icon>
+            <span>A cada {{ intervalo }} horas</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button *ngIf="racoes.length > 0" class="custom" expand="block" (click)="openPicker()">Escolher ração e intervalo</ion-button>
   </ion-card>
 
   <div class="button-alignment">
-    <ion-button class="custom" (click)="start()">Começar agora</ion-button>
+    <ion-button class="custom" expand="block" (click)="start('prod')">Começar agora</ion-button>
+    <ion-button class="custom" expand="block" *ngIf="isDev" (click)="start('dev')">TESTE</ion-button>
   </div>
 </ion-content>

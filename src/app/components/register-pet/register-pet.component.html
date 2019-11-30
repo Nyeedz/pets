@@ -2,7 +2,7 @@
   <ion-item>
     <ion-label position="floating">Nome</ion-label>
     <ion-input formControlName="nome" required></ion-input>
-    <span class="mt-2 danger" *ngIf="submitted && form.controls.nome.errors">
+    <span class="mt-2 danger" *ngIf="form.controls.nome.errors">
       Nome é obrigatório !
     </span>
   </ion-item>
@@ -10,7 +10,7 @@
   <ion-item>
     <ion-label position="floating">Raça</ion-label>
     <ion-input formControlName="raca" required></ion-input>
-    <span class="mt-2 danger" *ngIf="submitted && form.controls.raca.errors">
+    <span class="mt-2 danger" *ngIf="form.controls.raca.errors">
       Raça é obrigatório !
     </span>
   </ion-item>
@@ -18,7 +18,7 @@
   <ion-item>
     <ion-label position="floating">Peso</ion-label>
     <ion-input formControlName="peso" required></ion-input>
-    <span class="mt-2 danger" *ngIf="submitted && form.controls.peso.errors">
+    <span class="mt-2 danger" *ngIf="form.controls.peso.errors">
       Peso é obrigatório !
     </span>
   </ion-item>
@@ -28,7 +28,7 @@
     <ion-input formControlName="racaoName" required></ion-input>
     <span
       class="mt-2 danger"
-      *ngIf="submitted && form.controls.racaoName.errors"
+      *ngIf="form.controls.racaoName.errors"
     >
       Nome da ração é obrigatório !
     </span>
@@ -43,7 +43,7 @@
 
     <span
       class="mt-2 danger"
-      *ngIf="submitted && form.controls.aniversario.errors"
+      *ngIf="form.controls.aniversario.errors"
     >
       Aniversario é obrigatório !
     </span>

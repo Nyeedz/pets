@@ -16,12 +16,12 @@
         <ion-ripple-effect></ion-ripple-effect>
       </div>
       <div class="pet-detail">
-        <ion-button (click)="showAvaliacoes(pet)" color="primary" expand="full"
+        <ion-button (click)="null" color="primary" expand="full"
           >Informações</ion-button
         >
         <ion-list>
-          <ion-item>
-            <ion-label>Ração Favorita: Pedigree</ion-label>
+          <ion-item *ngIf="pet.favoritos.length > 0">
+            <ion-label>Ração Favorita: {{ racoes[pet.favoritos[pet.favoritos.length - 1].racao].nome }}</ion-label>
             <ion-note slot="end" color="primary"
               ><ion-icon name="heart" style="font-size: 25px"></ion-icon
             ></ion-note>
@@ -37,10 +37,6 @@
           <ion-item>
             <ion-label>{{ pet.peso }}kg</ion-label>
             <ion-note slot="end" color="primary">Peso</ion-note>
-          </ion-item>
-          <ion-item>
-            <ion-label>35 dias</ion-label>
-            <ion-note slot="end" color="primary">Período</ion-note>
           </ion-item>
         </ion-list>
       </div>

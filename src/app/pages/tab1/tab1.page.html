@@ -1,6 +1,6 @@
-<ion-content class="white">
+<ion-content class="white" *ngIf="user$ | async as user">
   <div class="position-fundo">
-    <img [src]="user.avatar" [alt]="user.username" class="avatar" />
+    <img [src]="url + user.foto.url" [alt]="user.username" class="avatar" />
   </div>
   <div padding>
     <ion-card class="mt-2">
